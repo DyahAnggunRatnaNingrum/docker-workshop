@@ -7,4 +7,13 @@ requires-python = ">=3.13"
 dependencies = [
     "pandas>=3.0.0",
     "pyarrow>=23.0.0",
+    "sqlalchemy>=2.0.46",
+    "tdqm>=0.0.1",
+    "tqdm>=4.67.3",
+]
+
+[dependency-groups]
+dev = [
+    "jupyter>=1.1.1",
+    "pgcli>=4.4.0",
 ]
