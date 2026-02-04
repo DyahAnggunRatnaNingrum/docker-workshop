@@ -1,17 +1,17 @@
-FROM python:3.13.11-slim
+# 
+FROM python:3.13-slim
+
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/
 
+WORKDIR /code
 
-RUN pip install pandas pyarrow
+# copy dependency files dulu
+COPY pyproject.toml uv.lock ./
 
-WORKDIR /app
-
-COPY "pyproject.toml" "uv.lock" ".python-version" ./
-
+# install semua dependencies dari uv.lock
 RUN uv sync --locked
 
+# copy script setelah dependencies supaya cache efisien
+COPY ingest_data.py ingest_data.py
 
-COPY pipeline.py pipeline.py
-
-ENTRYPOINT ["uv", "run", "python", "pipeline.py"]
-CMD ["12"]
+ENTRYPOINT ["uv", "run", "python", "ingest_data.py"]
