@@ -1,1 +1,6 @@
-.ipynb_checkpoints/
+*.parquet
+
+__pycache__/
+.venv/
+.env
+.DS_Store
